@@ -8,8 +8,13 @@ const api = {
       method: endpoint.method,
       data,
     }
-    const response = await axios(request)
-    return response.data
+    try{
+      const response = await axios(request)
+      return response.data
+    }
+    catch(err){
+      return err.response.data.data
+    }
   },
 }
 export default api
