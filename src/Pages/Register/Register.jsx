@@ -1,25 +1,35 @@
 import { Container } from 'react-bootstrap'
-import RegisterForm from '../../Components/RegisterForm/RegisterForm'
+import RegisterForm from '../../Components/Forms/Register/Register'
 
 import { api, endpoints } from '../../lib/api'
+import SuperHeroAlert from '../../Components/SuperHeroAlert'
+import { useState } from 'react'
 
 const Register = () => {
-  
-  const submitRegister = async (data, setErrors) => {
-    const result = await api.call(endpoints.register, data)
-    if(!result.success){
-      setErrors([result])
+  const [message, setMessage] = useState('')
+  const [variant, setVariant] = useState('danger')
+
+  const submitRegister = async (data) => {
+    setVariant('danger')
+    const config = {
+      data,
+    }
+    const result = await api.call(endpoints.register, config)
+    if (!result.success) {
+      setMessage([result.data])
       return
     }
-    alert('redirect to login')
+    setVariant('success')
+    setMessage('Please verify your account')
   }
 
   return (
     <>
       <Container>
         <h1>Register</h1>
+        <SuperHeroAlert variant={variant}>{message}</SuperHeroAlert>
       </Container>
-      <RegisterForm submit={submitRegister} />
+      {variant !== 'success' && <RegisterForm setMessage={setMessage} submit={submitRegister} />}
     </>
   )
 }

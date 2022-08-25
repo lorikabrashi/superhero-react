@@ -1,19 +1,32 @@
 import axios from 'axios'
 
+
+/*
+ {
+  data: {}
+  headers: {}
+  params: {}
+  query: {}
+ }
+*/
 const api = {
-  call: async (endpoint, data = {}) => {
+  call: async (endpoint, config = {}) => {
     const url = process.env.REACT_APP_API_URL + endpoint.url
+    const {data, headers} = config
+
     const request = {
       url,
       method: endpoint.method,
       data,
+      headers
     }
+    
     try{
       const response = await axios(request)
       return response.data
     }
     catch(err){
-      return err.response.data.data
+      return err.response.data
     }
   },
 }

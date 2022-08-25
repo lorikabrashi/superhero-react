@@ -1,48 +1,45 @@
 import { useState } from 'react'
-import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { emailRegex, passwordRegex } from '../../../lib/constants'
 
-const RegisterForm = ({ submit }) => {
+const RegisterForm = ({ submit, setMessage }) => {
   const [firstName, setFirstName] = useState()
   const [lastName, setLastName] = useState()
   const [password, setPassword] = useState()
   const [confPassword, setConfPassword] = useState()
   const [age, setAge] = useState(0)
   const [email, setEmail] = useState()
-  const [errors, setErrors] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    const passwordRegex = /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$/
 
     const localErrors = []
-     setErrors(localErrors)
+    setMessage('')
 
-    if(!firstName){
-      localErrors.push('First name cannot be empty!');
+    if (!firstName) {
+      localErrors.push('First name cannot be empty!')
     }
-    if(!lastName){
-      localErrors.push('Last name cannot be empty!');
+    if (!lastName) {
+      localErrors.push('Last name cannot be empty!')
     }
-    if(!emailRegex.test(email)){
-      localErrors.push('Email is not valid!');
+    if (!emailRegex.test(email)) {
+      localErrors.push('Email is not valid!')
     }
-    if(!age){
-      localErrors.push('Age name cannot be empty!');
+    if (!age) {
+      localErrors.push('Age name cannot be empty!')
     }
-    if(age < 0){
-      localErrors.push('Age cannot be less then 0!');
+    if (age < 0) {
+      localErrors.push('Age cannot be less then 0!')
     }
-    if(!passwordRegex.test(password)){
+    if (!passwordRegex.test(password)) {
       localErrors.push('Password must contain a number and a character')
     }
-    if(confPassword !== password){
+    if (confPassword !== password) {
       localErrors.push('Passwords do not match')
     }
 
-    if(localErrors.length){
-      setErrors(localErrors)
+    if (localErrors.length) {
+      setMessage(localErrors[0])
       return
     }
     const data = {
@@ -50,25 +47,21 @@ const RegisterForm = ({ submit }) => {
       lastName,
       email,
       age,
-      password
+      password,
     }
-    submit(data, setErrors)
+    submit(data)
   }
 
   return (
     <Container>
-      {errors.length > 0 && <Alert variant="danger">{errors[0]}</Alert>}
-
       <Row>
         <Col>
-          <Form
-            onSubmit={handleSubmit}
-          >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
               <Form.Label>First Name</Form.Label>
               <input
                 type="text"
-                // required
+                required
                 className="form-control"
                 value={firstName}
                 onChange={(e) => {
@@ -78,11 +71,11 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <input
                 type="text"
-                // required
+                required
                 className="form-control"
                 value={lastName}
                 onChange={(e) => {
@@ -92,11 +85,11 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <input
-                type="text"
-                // required
+                type="email"
+                required
                 className="form-control"
                 value={email}
                 onChange={(e) => {
@@ -106,12 +99,12 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Age</Form.Label>
               <input
                 type="number"
-                // required
-                // min={1}
+                required
+                min={1}
                 className="form-control"
                 value={age}
                 onChange={(e) => {
@@ -121,11 +114,11 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <input
                 type="password"
-                // required
+                required
                 className="form-control"
                 value={password}
                 onChange={(e) => {
@@ -135,11 +128,11 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Confirm Password</Form.Label>
               <input
                 type="password"
-                // required
+                required
                 className="form-control"
                 value={confPassword}
                 onChange={(e) => {
@@ -149,7 +142,7 @@ const RegisterForm = ({ submit }) => {
               />
             </Form.Group>
 
-            <div className="sbumit">
+            <div className="submit">
               <Button type="submit">Submit</Button>
             </div>
           </Form>
