@@ -1,6 +1,13 @@
+import { useSelector } from 'react-redux'
+
 const Dashboard = () => {
+  const token = useSelector((state) => state.auth.token)
+
   return (
-    <div>Dashboard</div>
+    <div>
+      Dashboard
+      Token: {token}  
+    </div>
   )
 }
 

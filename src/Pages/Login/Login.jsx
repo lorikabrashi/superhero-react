@@ -3,7 +3,15 @@ import { Container } from 'react-bootstrap'
 import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import LoginForm from '../../Components/Forms/Login'
 import { api, endpoints } from '../../lib/api'
+
+import { login } from '../../lib/store/slices/auth'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [errorMessage, setErrorMessage] = useState()
 
   const submit = async (data) => {
@@ -15,9 +23,8 @@ const Login = () => {
       setErrorMessage([result.data])
       return
     }
-      console.log(result)
-      // Store token into store & local storage
-      // refresh page
+    dispatch(login(result.data))
+    navigate('/dashboard')
   }
 
   return (
@@ -26,7 +33,7 @@ const Login = () => {
         <h1>Login</h1>
         <SuperHeroAlert variant={'danger'}>{errorMessage}</SuperHeroAlert>
       </Container>
-      <LoginForm setMessage={setErrorMessage} submit={submit} />
+      <LoginForm setMessage={setErrorMessage} submit={submit} /> 
     </>
   )
 }
