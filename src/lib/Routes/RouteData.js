@@ -6,6 +6,7 @@ import Register from '../../Pages/Register/Register'
 import ResetPassword from '../../Pages/ResetPassword'
 import VerifyAccount from '../../Pages/VerifyAccount/VerifyAccount'
 import Dashboard from '../../Pages/Dashboard'
+import Profile from '../../Pages/Profile/Profile'
 
 export const routeData = {
   public: [
@@ -46,5 +47,10 @@ export const routeData = {
       element: <Dashboard />,
     },
   ],
-  user: [],
+  user: [
+    {
+      path: '/profile',
+      element: <Profile />,
+    },
+  ],
 }
