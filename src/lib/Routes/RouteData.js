@@ -7,6 +7,7 @@ import ResetPassword from '../../Pages/ResetPassword'
 import VerifyAccount from '../../Pages/VerifyAccount/VerifyAccount'
 import Dashboard from '../../Pages/Dashboard'
 import Profile from '../../Pages/Profile/Profile'
+import Superheros from '../../Pages/Superheros'
 
 export const routeData = {
   public: [
@@ -51,6 +52,10 @@ export const routeData = {
     {
       path: '/profile',
       element: <Profile />,
+    },
+    {
+      path: '/superheros',
+      element: <Superheros />,
     },
   ],
 }

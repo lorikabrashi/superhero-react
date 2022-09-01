@@ -1,0 +1,28 @@
+.card {
+  padding: 10px;
+  border: 1px solid grey;
+  margin: 10px;
+  figure {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul li .key {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  h5 {
+    border-bottom: 1px solid gray;
+  }
+  .titleWrapper {
+    padding-right: 10px;
+    svg {
+      cursor: pointer;
+    }
+  }
+}

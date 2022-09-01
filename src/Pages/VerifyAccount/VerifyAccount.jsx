@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { api, endpoints } from '../../lib/api'
 import SuperHeroAlert from '../../Components/SuperHeroAlert/'
 import { Container, Row } from 'react-bootstrap'
+import { getHeaderStructure } from '../../lib/helpers'
 
 const VerifyAccount = () => {
   const [success, setSuccess] = useState()
@@ -16,9 +17,7 @@ const VerifyAccount = () => {
         const token = params.get('token')
 
         const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: getHeaderStructure(token)
         }
 
         const result = await api.call(endpoints.verify, config)

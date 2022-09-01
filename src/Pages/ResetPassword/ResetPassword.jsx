@@ -4,6 +4,7 @@ import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import ResetPasswordForm from '../../Components/Forms/ResetPassword'
 import { api, endpoints } from '../../lib/api'
 import { Link, useLocation } from 'react-router-dom'
+import { getHeaderStructure } from '../../lib/helpers'
 
 const ResetPassword = () => {
   const [message, setMessage] = useState('')
@@ -20,9 +21,7 @@ const ResetPassword = () => {
 
   const submitRestPassword = async (data) => {
     const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: getHeaderStructure(token),
       data,
     }
     const result = await api.call(endpoints.resetPassword, config)
