@@ -7,7 +7,9 @@ const endpoints = {
   resetPassword: { url: '/users/forgot-password', method: 'PUT' },
   superheros: { url: '/superhero/all', method: 'GET' },
   favoriteList: { url: '/users/favorite-list', method: 'GET' },
-  updateFavorite: {url: '/users/update-favorite', method: 'POST'}
+  updateFavorite: { url: '/users/update-favorite', method: 'POST' },
+  singleSuperhero: { url: '/superhero/', method: 'GET' },
+  editSuperhero: { url: '/superhero/', method: 'POST' },
 }
 
 export default endpoints

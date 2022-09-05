@@ -8,6 +8,8 @@ import VerifyAccount from '../../Pages/VerifyAccount/VerifyAccount'
 import Dashboard from '../../Pages/Dashboard'
 import Profile from '../../Pages/Profile/Profile'
 import Superheros from '../../Pages/Superheros'
+import EditSuperheros from '../../Pages/EditSuperheros/EditSuperheros'
+import SingleSuperhero from '../../Pages/SingleSuperhero'
 
 export const routeData = {
   public: [
@@ -46,6 +48,14 @@ export const routeData = {
     {
       path: '/dashboard',
       element: <Dashboard />,
+    },
+    {
+      path: '/edit-superheros',
+      element: <EditSuperheros />,
+    },
+    {
+      path: '/superhero/:superheroId',
+      element: <SingleSuperhero />,
     },
   ],
   user: [

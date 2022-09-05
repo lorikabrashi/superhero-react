@@ -6,6 +6,7 @@ import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import { api, endpoints } from '../../lib/api'
 import { getHeaderStructure } from '../../lib/helpers'
 import SearchBar from '../../Components/SearchBar'
+
 const Superheros = () => {
   const [completeHeros, setCompleteHeros] = useState([])
   const [superheros, setSuperHeros] = useState([])

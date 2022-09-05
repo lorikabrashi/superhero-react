@@ -5,14 +5,21 @@ import axios from 'axios'
  {
   data: {}
   headers: {}
-  params: {}
+  params: []
   query: {}
  }
 */
 const api = {
   call: async (endpoint, config = {}) => {
-    const url = process.env.REACT_APP_API_URL + endpoint.url
+    let url = process.env.REACT_APP_API_URL + endpoint.url
     const {data, headers} = config
+
+
+    if(config.params && config.params.length) {
+      config.params.forEach(elem => {
+        url += `${elem}/`
+      })
+    }
 
     const request = {
       url,
