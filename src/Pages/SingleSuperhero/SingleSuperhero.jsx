@@ -36,13 +36,23 @@ const SingleSuperhero = () => {
     console.log(result)
   }
 
+  const changeImage = async (file) => {
+
+    const formData = new FormData();
+    formData.append("superhero-image", file);
+    const editConfig = {...config}
+    editConfig.data = formData
+    const result = await api.call(endpoints.editSuperheroImage, editConfig)
+    console.log(result)
+  }
+
   return (
     <Container>
       <Row>
         <Col md={12}>
           <pre>{JSON.stringify(superhero, null, 2)}</pre>
         </Col>
-        <Col>{superhero && <EditSuperHeroForm superhero={superhero} edit={handleEdit} />}</Col>
+        <Col>{superhero && <EditSuperHeroForm superhero={superhero} edit={handleEdit} changeImage={changeImage} />}</Col>
       </Row>
     </Container>
   )

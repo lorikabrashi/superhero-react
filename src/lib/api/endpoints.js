@@ -10,6 +10,7 @@ const endpoints = {
   updateFavorite: { url: '/users/update-favorite', method: 'POST' },
   singleSuperhero: { url: '/superhero/', method: 'GET' },
   editSuperhero: { url: '/superhero/', method: 'POST' },
+  editSuperheroImage: { url: '/superhero/edit-image/', method: 'POST' },
 }
 
 export default endpoints
