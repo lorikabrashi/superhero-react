@@ -8,10 +8,10 @@ const PublicRoutes = ({ children }) => {
     if (auth.role === 'ADMIN') {
       return <Navigate to="/dashboard" />
     } else {
-      return <Navigate to="/profile" />
+      return <Navigate to="/user-profile" />
     }
   }
-  return <>{ children }</>
+  return <>{children}</>
 }
 
 export default PublicRoutes

@@ -4,6 +4,8 @@ import RegisterForm from '../../Components/Forms/Register/Register'
 import { api, endpoints } from '../../lib/api'
 import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import { useState } from 'react'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const Register = () => {
   const [message, setMessage] = useState('')
@@ -34,4 +36,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default withMenu(Register, MENU_TYPES.exposed)

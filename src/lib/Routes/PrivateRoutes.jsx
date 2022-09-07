@@ -10,7 +10,7 @@ const PrivateRoutes = ({ role, children }) => {
 
   if (auth.role !== role) {
     if (role === 'ADMIN') {
-      return <Navigate to="/profile" />
+      return <Navigate to="/user-profile" />
     } else {
       return <Navigate to="/dashboard" />
     }

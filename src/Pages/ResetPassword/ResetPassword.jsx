@@ -5,6 +5,8 @@ import ResetPasswordForm from '../../Components/Forms/ResetPassword'
 import { api, endpoints } from '../../lib/api'
 import { Link, useLocation } from 'react-router-dom'
 import { getHeaderStructure } from '../../lib/helpers'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const ResetPassword = () => {
   const [message, setMessage] = useState('')
@@ -44,4 +46,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default withMenu(ResetPassword, MENU_TYPES.exposed)

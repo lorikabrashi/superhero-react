@@ -21,7 +21,6 @@ const ListItem = ({ data, title }) => {
 }
 
 const SuperheroCard = ({ data, favoriteList, toggleFavorite }) => {
-  
   const handleFavoriteClick = (e) => {
     toggleFavorite(data._id)
   }
@@ -29,7 +28,7 @@ const SuperheroCard = ({ data, favoriteList, toggleFavorite }) => {
   return (
     <div className={styles.card}>
       <figure>
-        <img src={data.images} alt="superhero" />
+        <img src={data.images.startsWith('http') ? data.images : process.env.REACT_APP_API_URL + data.images} alt="superhero" />
       </figure>
       <div className={`${styles.titleWrapper} d-flex justify-content-between`}>
         <h2 className={styles.name}>{data.name}</h2>

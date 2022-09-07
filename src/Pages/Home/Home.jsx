@@ -1,30 +1,19 @@
 import { Col, Container, Row } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
-import { login, logout } from '../../lib/store/slices/auth'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
+
 
 const Home = () => {
-  const token = useSelector((state) => state.auth.token)
-  const dispatch = useDispatch()
-
   return (
     <Container>
       <Row>
         <Col md={6}>
-          {<div>
-            <div>
-              <button aria-label="Increment value" onClick={() => dispatch(login('my token'))}>
-                Login
-              </button>
-              <span>{JSON.stringify(token)}</span>
-              <button aria-label="Decrement value" onClick={() => dispatch(logout())}>
-                Logout
-              </button>
-            </div>
-          </div>}
+          <h1>Welcome to superhero app</h1>
+          <div>The best app in the world!</div>
         </Col>
       </Row>
     </Container>
   )
 }
 
-export default Home
+export default withMenu(Home, MENU_TYPES.dynamic)

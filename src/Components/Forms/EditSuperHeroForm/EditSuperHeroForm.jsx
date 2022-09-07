@@ -47,7 +47,7 @@ const EditSuperHeroForm = ({ superhero, edit, changeImage }) => {
 
   const handleImageChange = (e) => {
     e.preventDefault()
-    changeImage(fileRef.current.files[0])        
+    changeImage(fileRef.current.files[0])
   }
 
   const handleSubmit = (e) => {
@@ -78,12 +78,11 @@ const EditSuperHeroForm = ({ superhero, edit, changeImage }) => {
     edit(data)
   }
 
-
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Details</h2>
       <div className={styles.image}>
-        <img src={  image.startsWith('http') ? image : process.env.REACT_APP_API_URL + image} alt="superhero-single" />
+        <img src={image.startsWith('http') ? image : process.env.REACT_APP_API_URL + image} alt="superhero-single" />
         <input ref={fileRef} type="file" onChange={handleImageChange} name="superhero-image" accept="image/png, image/jpeg" />
       </div>
       <Input setValue={setName} value={name} name="Name" required={true} />

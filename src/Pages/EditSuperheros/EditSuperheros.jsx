@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import SuperheroTable from '../../Components/SuperheroTable/SuperheroTable'
 import { api, endpoints } from '../../lib/api'
 import { getHeaderStructure } from '../../lib/helpers'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const EditSuperheros = () => {
 
@@ -34,4 +36,4 @@ const EditSuperheros = () => {
   )
 }
 
-export default EditSuperheros
+export default withMenu(EditSuperheros, MENU_TYPES.admin)

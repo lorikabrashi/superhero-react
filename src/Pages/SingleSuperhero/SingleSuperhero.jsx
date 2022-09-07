@@ -5,14 +5,19 @@ import { api, endpoints } from '../../lib/api'
 import { useSelector } from 'react-redux'
 import { getHeaderStructure } from '../../lib/helpers'
 import EditSuperHeroForm from '../../Components/Forms/EditSuperHeroForm/EditSuperHeroForm'
+import SuperHeroAlert from '../../Components/SuperHeroAlert'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const SingleSuperhero = () => {
   const { superheroId } = useParams()
 
   const [superhero, setSuperhero] = useState()
+  const [alert, setAlert] = useState(false)
+  const [msg, setMsg] = useState('') 
+  const [variant, setVariant] = useState('success')
 
   const token = useSelector((state) => state.auth.data.token)
-
   const config = {
     headers: getHeaderStructure(token),
     params: [superheroId],
@@ -32,8 +37,16 @@ const SingleSuperhero = () => {
     const editConfig = {...config}
     editConfig.data = data
     
-    const result = await api.call(endpoints.editSuperhero, editConfig)
-    console.log(result)
+    try{
+      await api.call(endpoints.editSuperhero, editConfig)
+      setMsg('Superhero was successfully changed!')
+      setVariant('success')
+    }
+    catch(err){
+      setMsg('You got an error!')
+      setVariant('danger')
+    }
+    setAlert(true)
   }
 
   const changeImage = async (file) => {
@@ -42,20 +55,25 @@ const SingleSuperhero = () => {
     formData.append("superhero-image", file);
     const editConfig = {...config}
     editConfig.data = formData
-    const result = await api.call(endpoints.editSuperheroImage, editConfig)
-    console.log(result)
+    try{
+      await api.call(endpoints.editSuperheroImage, editConfig)
+      setMsg('Superhero image was successfully changed!')
+      setVariant('success')
+    }catch(err){
+      setMsg('You got an error!')
+      setVariant('danger')
+    }
+    setAlert(true)
   }
 
   return (
     <Container>
       <Row>
-        <Col md={12}>
-          <pre>{JSON.stringify(superhero, null, 2)}</pre>
-        </Col>
+        {alert && <SuperHeroAlert variant={variant}>{msg}</SuperHeroAlert>} 
         <Col>{superhero && <EditSuperHeroForm superhero={superhero} edit={handleEdit} changeImage={changeImage} />}</Col>
       </Row>
     </Container>
   )
 }
 
-export default SingleSuperhero
+export default withMenu(SingleSuperhero, MENU_TYPES.admin)

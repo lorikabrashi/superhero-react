@@ -7,6 +7,8 @@ import { api, endpoints } from '../../lib/api'
 import { login } from '../../lib/store/slices/auth'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -37,4 +39,4 @@ const Login = () => {
     </>
   )
 }
-export default Login
+export default withMenu(Login, MENU_TYPES.exposed)

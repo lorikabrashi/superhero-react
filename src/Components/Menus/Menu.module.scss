@@ -1,0 +1,14 @@
+.menuWrapper {
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  .menu {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    li {
+      margin-right: 10px;
+    }
+  }
+}

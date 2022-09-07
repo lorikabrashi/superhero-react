@@ -57,10 +57,14 @@ export const routeData = {
       path: '/superhero/:superheroId',
       element: <SingleSuperhero />,
     },
+    {
+      path: '/admin-profile',
+      element: <Profile />,
+    },
   ],
   user: [
     {
-      path: '/profile',
+      path: '/user-profile',
       element: <Profile />,
     },
     {

@@ -6,6 +6,8 @@ import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import { api, endpoints } from '../../lib/api'
 import { getHeaderStructure } from '../../lib/helpers'
 import SearchBar from '../../Components/SearchBar'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 
 const Superheros = () => {
   const [completeHeros, setCompleteHeros] = useState([])
@@ -63,4 +65,4 @@ const Superheros = () => {
   )
 }
 
-export default Superheros
+export default withMenu(Superheros, MENU_TYPES.user)

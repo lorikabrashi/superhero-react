@@ -1,20 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../lib/store/slices/auth'
+import { Container, Row, Col } from 'react-bootstrap'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
 const Dashboard = () => {
-  const auth = useSelector((state) => state.auth.data)
-  const dispatch = useDispatch()
   return (
-    <div>
-      Dashboard Token: {auth.token}
-      <button
-        onClick={() => {
-          dispatch(logout())
-        }}
-      >
-        Logout
-      </button>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h1>Dashboard</h1>
+          <div>Here we can display all user and superhero activity!</div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
-export default Dashboard
+export default withMenu(Dashboard, MENU_TYPES.admin)

@@ -3,6 +3,9 @@ import { Container } from 'react-bootstrap'
 import SuperHeroAlert from '../../Components/SuperHeroAlert'
 import ForgotPasswordForm from '../../Components/Forms/ForgotPassword'
 import { api, endpoints } from '../../lib/api'
+import withMenu from '../../hoc/withMenu'
+import { MENU_TYPES } from '../../lib/constants'
+
 const ForgotPassword = () => {
   const [message, setMessage] = useState()
   const [variant, setVariant] = useState('danger')
@@ -32,4 +35,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default withMenu(ForgotPassword, MENU_TYPES.exposed)
