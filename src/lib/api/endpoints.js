@@ -11,6 +11,9 @@ const endpoints = {
   singleSuperhero: { url: '/superhero/', method: 'GET' },
   editSuperhero: { url: '/superhero/', method: 'POST' },
   editSuperheroImage: { url: '/superhero/edit-image/', method: 'POST' },
+  getProfileData: { url: '/users/me', method: 'GET' },
+  updateProfile: {url: '/users/update-profile', method: 'POST'},
+  updateProfilePicture: {url: '/users/update-profile-picture', method: "POST"}
 }
 
 export default endpoints
